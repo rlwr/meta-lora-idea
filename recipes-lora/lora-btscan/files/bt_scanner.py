@@ -49,7 +49,7 @@ s_js = parse_hcitool(s)
 # Send LoRa message
 print ">>>> LORA: sending message"
 lora_module.start()
-lora_module.send(s_js)
+lora_module.send_bin(s_js)
 lora_module.stop()
 
 print ">>>> DONE"

@@ -35,9 +35,16 @@ def stop():
     lora_serial.send_string("AT+RF=OFF\n")
     print lora_serial.receive_string()
 
-# Encode text string to hex
+# Send text string
+# Note: do not know how to escape ',' '{', ...
 def send(msg):
     lora_serial.send_string("AT+RFTX=SNDTXT," + msg + ",1")
+    print lora_serial.receive_string()
+
+# Send text string encoded as hex
+def send_bin(msg):
+    msg = msg.encode("hex").upper()
+    lora_serial.send_string("AT+RFTX=SNDBIN," + msg + ",1")
     print lora_serial.receive_string()
 
 # Send "CAFE" (hex message)
